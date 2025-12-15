@@ -12,17 +12,14 @@
 #include "uart_printf.h"
 #include "uart_sent.h"
 #include "CAN_receive.h"
-
-
-
-
+#include "dm_motor.h"
 
 
 void uart_sent_debug()
 {
     while (1)
     {
-        usart6_printf("%d \r\n",rc_ch0);
+        usart6_printf("%f \r\n",DM8009P_01_RIGHT_FRONT.return_angle);
 
 
 

@@ -56,4 +56,5 @@ CMakeFiles/bubing_RM2025.elf.dir/code_mf/Src/CAN_receive.c.obj: \
  D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\Drivers\STM32F4xx_HAL_Driver\Inc/stm32f4xx_hal_uart.h \
  D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/remote_control.h \
  D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/struct_typedef.h \
- D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/bsp_rc.h
+ D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/bsp_rc.h \
+ D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/dm_motor.h

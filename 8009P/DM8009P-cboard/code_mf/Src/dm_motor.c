@@ -64,7 +64,9 @@ void Dm_Can_Send(struct dm_motor dm_motor_para)
 
     /* 限制输入的参数在定义的范围内 */
     switch (dm_motor_para.motor_type) {
+
         case DM8009P:
+        {
             LIMIT_MIN_MAX(f_p,  DM8009P_P_MIN,  DM8009P_P_MAX);
             LIMIT_MIN_MAX(f_v,  DM8009P_V_MIN,  DM8009P_V_MAX);
             LIMIT_MIN_MAX(f_kp, DM8009P_KP_MIN, DM8009P_KP_MAX);
@@ -77,7 +79,10 @@ void Dm_Can_Send(struct dm_motor dm_motor_para)
             kd = float_to_uint(f_kd,    DM8009P_KD_MIN, DM8009P_KD_MAX, 12);
             t = float_to_uint(f_t,      DM8009P_T_MIN,  DM8009P_T_MAX,  12);
             break;
+        }
+
         case DM4310:
+        {
             LIMIT_MIN_MAX(f_p,  DM4310_P_MIN,  DM4310_P_MAX);
             LIMIT_MIN_MAX(f_v,  DM4310_V_MIN,  DM4310_V_MAX);
             LIMIT_MIN_MAX(f_kp, DM4310_KP_MIN, DM4310_KP_MAX);
@@ -90,7 +95,10 @@ void Dm_Can_Send(struct dm_motor dm_motor_para)
             kd = float_to_uint(f_kd,    DM4310_KD_MIN, DM4310_KD_MAX, 12);
             t = float_to_uint(f_t,      DM4310_T_MIN,  DM4310_T_MAX,  12);
             break;
+        }
+
         case DM3507:
+        {
             LIMIT_MIN_MAX(f_p,  DM3507_P_MIN,  DM3507_P_MAX);
             LIMIT_MIN_MAX(f_v,  DM3507_V_MIN,  DM3507_V_MAX);
             LIMIT_MIN_MAX(f_kp, DM3507_KP_MIN, DM3507_KP_MAX);
@@ -103,8 +111,13 @@ void Dm_Can_Send(struct dm_motor dm_motor_para)
             kd = float_to_uint(f_kd,    DM3507_KD_MIN, DM3507_KD_MAX, 12);
             t = float_to_uint(f_t,      DM3507_T_MIN,  DM3507_T_MAX,  12);
             break;
+        }
+
         default:
+        {
             break;
+        }
+
     }
 
     /* 根据传输协议，把数据转换为CAN命令数据字段 */

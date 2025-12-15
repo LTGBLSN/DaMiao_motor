@@ -83,4 +83,5 @@ CMakeFiles/bubing_RM2025.elf.dir/code_mf/Src/uart_sent.c.obj: \
  D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\Core\Inc/gpio.h \
  D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/uart_printf.h \
  D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/uart_sent.h \
- D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/CAN_receive.h
+ D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/CAN_receive.h \
+ D:\RoboMaster_git\DaMiao_motor\8009P\DM8009P-cboard\code_mf\Inc/dm_motor.h

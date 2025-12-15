@@ -20,6 +20,7 @@
 #include <string.h>
 #include "CAN_receive.h"
 #include "main.h"
+#include "dm_motor.h"
 
 
 extern CAN_HandleTypeDef hcan1;
@@ -64,33 +65,68 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
     if(hcan == &hcan1)
     {
-        CAN_RxHeaderTypeDef can1_rx_header;
-        uint8_t can1_rx_data[8];
+        CAN_RxHeaderTypeDef can1_RxHead; /**!< can通信协议头 */
+        uint8_t can1_data[8];
+        HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can1_RxHead, can1_data);
 
-        HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can1_rx_header, can1_rx_data);
-
-        switch (can1_rx_header.StdId)
+        switch (can1_RxHead.StdId)
         {
-            case CAN_3508_M1_ID:
-            case CAN_3508_M2_ID:
-            case CAN_3508_M3_ID:
-            case CAN_3508_M4_ID:
-            case CAN_YAW_MOTOR_ID:
-            case CAN_PIT_MOTOR_ID:
-            case CAN_TRIGGER_MOTOR_ID:
+            case (0x11):
             {
-                static uint8_t i = 0;
-                //get motor id
-                i = can1_rx_header.StdId - CAN_3508_M1_ID;
-                get_motor_measure(&motor_can1_data[i], can1_rx_data);
+                int p_int;
+                int v_int;
+                int t_int;
+
+                DM8009P_01_RIGHT_FRONT.state = (can1_data[0])>>4;
+                p_int = (can1_data[1] << 8) | can1_data[2];
+                v_int = (can1_data[3] << 4) | (can1_data[4] >> 4);
+                t_int = ((can1_data[4] & 0xF) << 8) | can1_data[5];
+                DM8009P_01_RIGHT_FRONT.return_angle = uint_to_float(p_int, DM8009P_P_MIN, DM8009P_P_MAX, 16);
+                DM8009P_01_RIGHT_FRONT.return_speed = uint_to_float(v_int, DM8009P_V_MIN, DM8009P_V_MAX, 12);
+                DM8009P_01_RIGHT_FRONT.return_tor = uint_to_float(t_int, DM8009P_T_MIN, DM8009P_T_MAX, 12);
+                DM8009P_01_RIGHT_FRONT.Tmos = (float )(can1_data[6]);
+                DM8009P_01_RIGHT_FRONT.Tcoil = (float )(can1_data[7]);
+
                 break;
             }
-
             default:
             {
                 break;
             }
         }
+
+
+
+
+
+
+//        CAN_RxHeaderTypeDef can1_rx_header;
+//        uint8_t can1_rx_data[8];
+//
+//        HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &can1_rx_header, can1_rx_data);
+//
+//        switch (can1_rx_header.StdId)
+//        {
+//            case CAN_3508_M1_ID:
+//            case CAN_3508_M2_ID:
+//            case CAN_3508_M3_ID:
+//            case CAN_3508_M4_ID:
+//            case CAN_YAW_MOTOR_ID:
+//            case CAN_PIT_MOTOR_ID:
+//            case CAN_TRIGGER_MOTOR_ID:
+//            {
+//                static uint8_t i = 0;
+//                //get motor id
+//                i = can1_rx_header.StdId - CAN_3508_M1_ID;
+//                get_motor_measure(&motor_can1_data[i], can1_rx_data);
+//                break;
+//            }
+//
+//            default:
+//            {
+//                break;
+//            }
+//        }
     } else if(hcan == &hcan2)
     {
         CAN_RxHeaderTypeDef can2_rx_header;
