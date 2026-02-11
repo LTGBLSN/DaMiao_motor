@@ -48,16 +48,16 @@
 #define DM4310_T_MIN -10.0f
 #define DM4310_T_MAX 10.0f
 
-#define DM3507_P_MIN -12.5f    // Radians
-#define DM3507_P_MAX 12.5f
-#define DM3507_V_MIN -30.0f    // Rad/s
-#define DM3507_V_MAX 30.0f
+#define DM3507_P_MIN (-12.566f)    // Radians
+#define DM3507_P_MAX 12.566f
+#define DM3507_V_MIN (-50.0f)    // Rad/s
+#define DM3507_V_MAX 50.0f
 #define DM3507_KP_MIN 0.0f     // N-m/rad
 #define DM3507_KP_MAX 500.0f
 #define DM3507_KD_MIN 0.0f     // N-m/rad/s
 #define DM3507_KD_MAX 5.0f
-#define DM3507_T_MIN -10.0f
-#define DM3507_T_MAX 10.0f
+#define DM3507_T_MIN (-5.0f)
+#define DM3507_T_MAX 5.0f
 
 extern struct dm_motor DM4310_01 ;
 

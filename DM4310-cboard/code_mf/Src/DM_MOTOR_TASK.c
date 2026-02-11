@@ -14,7 +14,7 @@ void DM_MOTOR_TASK()
     while (1)
     {
 
-        DM4310_01.give_tor = (float )rc_ch1*0.002f ;
+//        DM4310_01.give_tor = (float )rc_ch1*0.002f ;
 //        DM4310_01.give_tor = 0.5f ;
 
 

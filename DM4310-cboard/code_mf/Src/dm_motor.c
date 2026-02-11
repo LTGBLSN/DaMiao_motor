@@ -41,7 +41,7 @@ void dm_motor_mode_set(uint8_t cmd , struct dm_motor dmMotor_cmd)
         default:
             return; /* 直接退出函数 */
     }
-    DMCanTransmit(buf, sizeof(buf), DM4310_01.can_channel, DM4310_01.can_id);
+    DMCanTransmit(buf, sizeof(buf), dmMotor_cmd.can_channel, dmMotor_cmd.can_id);
 }
 
 

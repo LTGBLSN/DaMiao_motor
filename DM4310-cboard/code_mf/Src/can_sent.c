@@ -20,7 +20,9 @@ void can_sent()
 {
     while (1)
     {
+        DM4310_01.give_tor = 0.5f ;
         Dm_Can_Send(DM4310_01);
+        CAN1_cmd_chassis(0,0,0,0);
         osDelay(1);
     }
 
